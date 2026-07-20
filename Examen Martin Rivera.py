@@ -218,12 +218,75 @@ else:
     if resp != 's':
         break
 
-    elif opcion == 4:
-         print("\n--- Opcion 4: Agregar recorrido ---")
-         codigo = input("Codigo de recorrido: ")
-         if not validar_codigo(codigo, recorridos):
-            print("Error: El origen no puede estar vacio. No se registra el recorrido.")
-            continue
+
+     elif opcion == 4:
+          print("\n--- Opcion 4: Agregar recorrido ---")
+          codigo = input("Codigo de recorrido: ")
+          if not validar_codigo(codigo, recorridos):
+              print("Error: Codigo vacio o ya no existe. No se registra el recorrido.")
+              continue
+
+
+          origen = input("Ciudad de origen: ")
+          if not validar_texto(origen):
+              print("Error: El origen no puede estar vacio. No se registra el recorrido")
+              continue
+         
+          destino = input("Ciudad de dstino: ")
+          if not validar_texto(destino):
+              print("Error: El destino no puede estar vacio. No se registra el recorrido")
+              continue
+          
+          distancia = input("Distancia (km): ")
+          if not validar_distancia(distancia):
+              print("Error: Distancia invalida. Debe ser entero mayor a cero")
+              continue
+          
+          tipo_bus = input("Tipo de bus (normal / semi / cama): ")
+          if not validar_tipo_bus(tipo_bus):
+              print("Error: Tipo de bus incorrecto")
+              continue
+          
+          servicio = input("servicio (Dia/Noche): ")
+          if not validar_servicio(servicio):
+              print("Error: Servicio incorrecto.")
+              continue
+          
+          tiene_wifi = input("¿Tiene wifi? (S/N): ")
+          if not validar_tiene_wifi(tiene_wifi):
+              print("Error: Entrada de wifi invalida.")
+              continue
+          
+          precio = input("Precio del pasaje ($): ")
+          if not validar_precio(precio):
+              print("Error: Precio invalido. Debe ser entero mayor a cero")
+              continue
+          
+          asientos = input("Cantiddad de asientos disponibles: ")
+          if not validar_asientos(asientos):
+              print("Error: Cantidad de asientos invalida.")
+              continue
+          
+          exito = agregar_recorridos(codigo, origen, destino, distancia, tipo_bus, servicio, tiene_wifi, precio, asientos, recorridos, venta)
+          if exito:
+              print("Recorrido agregado")
+          else:
+              print("El codigo ya existe")
+
+    elif opcion == 5:
+        print("\n--- Opcion 5: Eliminar recorrido ---")
+        codigo = input("Ingrese codigo del recorrido a eliminar: ")
+        if eliminar_recorrido(codigo, recorrido, venta):
+            print("Recorrido eliminado")
+        else:
+            print("El codigo no existe")
+
+    elif opcion == 6:
+        print("Programa finalizado.")
+        ejecutando = False                          
+
+       
+            
 
 
 
